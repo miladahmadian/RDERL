@@ -13,7 +13,6 @@ number_of_neighbors = 90
 top_N = 5
 
 
-
 class User:
     deep_artist = list()
     deep_trust = list()
@@ -119,14 +118,10 @@ for u in range (num_users):
                 Users_list[u].deep_trust.append(0)
 
 
-
 for u in range (num_users):
     Users_list[u].trainable = 1
     if Users_list[u].train_artist == empty:
         Users_list[u].trainable = 0
-
-
-
 
 
 def Calculate_trust_similar (u,v):
@@ -354,14 +349,10 @@ def greedy_policy(state_m):
 
 
 
-
-
-
 #Create Loss_Array
 loss_array = []
 for i in range (cols):
     loss_array.append(0)
-
 
 
 
@@ -398,6 +389,7 @@ def action(act):
         else:
             action = np.array([w1 , w2, w3])
     return action
+
 
 #calculate reward 
 def reward(state_m,action_j,R=0):
@@ -436,6 +428,7 @@ def reward(state_m,action_j,R=0):
         R = +1 + loss_i - loss_j
     return R
 
+
 #Update Q
 episode = 5
 iterator = 20
@@ -468,8 +461,7 @@ for ep in range(episode):
         #print(state_m)
     gama=gama-0.01    
         
-
-            
+          
 print(min_state)
 
 w1 = state[min_state][0]
@@ -480,8 +472,6 @@ print(min_loss)
 print(w1 , w2 , w3)
 
 prediction(w1,w2,w3)
-
-
 
 f = open("initial_predictions.txt", "a")        
 for u in range (num_users):
@@ -509,3 +499,4 @@ print (datetime.now() - start)
 
 
    
+
