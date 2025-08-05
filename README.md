@@ -19,9 +19,12 @@ RDERL is a hybrid recommendation framework that:
 ---
 
 🛠️ **1. Prepare Dataset**
+
 Place the following files in `data/`:
-  `user_taggedartists.csv` (from Last.fm dataset)
-  `user_friends.csv`
+
+  - `user_taggedartists.csv` (from Last.fm dataset)
+  - `user_friends.csv`
+    
 Run preprocessing:
 
 bash
