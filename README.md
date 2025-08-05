@@ -1,116 +1,106 @@
-# RDERL: Reliable deep ensemble reinforcement learning-based recommender system
+# RDERL: Reliable Deep Ensemble Reinforcement Learning-based Recommender System
 
 This repository contains the implementation of the following paper:
-> *RDERL: Reliable deep ensemble reinforcement learning-based recommender system*  
-> Knowledge-Based Systems, 2023  
-> Doi: https://doi.org/10.1016/j.knosys.2023.110289
 
-
-## Overview
-RDERL is a hybrid recommendation framework that:
-- Learns user representations via **stacked denoising autoencoders** using:
-  - User–Artist interactions
-  - User–Tag associations
-  - User–Trust relationships
-- Computes **neighborhood-based collaborative filtering** predictions using similarity between latent embeddings
-- Applies **Reinforcement learning- Q-learning** to optimize weights (`w1`, `w2`, `w3`) for artist/tag/trust similarities
-- Integrates a **reliability-aware weighting** mechanism for robust ranking and top-N recommendation
+> **RDERL: Reliable deep ensemble reinforcement learning-based recommender system**  
+> *Knowledge-Based Systems*, 2023  
+> [https://doi.org/10.1016/j.knosys.2023.110289](https://doi.org/10.1016/j.knosys.2023.110289)
 
 ---
 
-🛠️ **1. Prepare Dataset**
+## 📌 Overview
 
-Place the following files in `data/`:
+RDERL is a hybrid recommender system that:
 
-  - `user_taggedartists.csv` (from Last.fm dataset)
-  - `user_friends.csv`
-    
-Run preprocessing:
+- Learns user representations via **stacked denoising autoencoders** from:
+  - User–Artist interactions
+  - User–Tag associations
+  - User–Trust relationships
+- Computes **neighborhood-based collaborative filtering** using latent similarities
+- Uses **Q-learning** to optimize the weights (`w1`, `w2`, `w3`) for combining similarity sources
+- Applies a **reliability-aware ranking** to generate robust top-N recommendations
 
-bash
-Copy
-Edit
+---
+
+## 🛠️ Step-by-Step Usage
+
+### 1. Prepare the Dataset
+
+Place the following files in the `data/` folder:
+
+- `user_taggedartists.csv` (from Last.fm dataset)
+- `user_friends.csv`
+
+Then run:
+```bash
 python src/preprocessing.py
+```
 This will generate:
+- `train_artist.csv`, `test_artist.csv`
+- `user_tag.csv`
 
-train_artist.csv, test_artist.csv
+---
 
-user_tag.csv
+### 2. Train Deep Autoencoders
 
-Train/test sets for each user
-
-🔧 3. Train Deep Autoencoders
-bash
-Copy
-Edit
+```bash
 python src/Stacked_Denoising_Autoencoder.py
-This script learns 30-dimensional latent vectors for each user from:
+```
+This script learns 30-dimensional user embeddings based on:
+- Artist preferences → `models/deep_user_artist.txt`
+- Tag behavior → `models/deep_user_tag.txt`
+- Trust network → `models/deep_user_trust.txt`
 
-Artist interactions
+---
 
-Tag annotations
+### 3. Optimize Fusion Weights via Reinforcement Learning
 
-Trust links
-
-Saved in:
-
-models/deep_user_artist.txt
-
-models/deep_user_tag.txt
-
-models/deep_user_trust.txt
-
-🧪 4. Optimize Similarity Fusion with Reinforcement Learning
-bash
-Copy
-Edit
+```bash
 python src/Reinforcement_Learning.py
+```
 This step:
+- Computes user similarities
+- Optimizes `w1`, `w2`, `w3` using Q-learning
+- Generates:
+  - `outputs/initial_predictions.txt`
+  - `outputs/neighbors_similarity.txt`
 
-Calculates similarity matrices for artist, tag, trust
+---
 
-Optimizes weights w1, w2, w3 using Q-learning
+### 4. Generate Final Reliable Recommendations
 
-Computes predicted scores and saves:
-
-outputs/initial_predictions.txt
-
-outputs/neighbors_similarity.txt
-
-📊 5. Generate Final Reliable Predictions
-bash
-Copy
-Edit
+```bash
 python src/reliable_predictions.py
+```
 This script:
+- Computes reliability factors (`fz`, `fv`)
+- Refines predictions using reliability
+- Evaluates using:
+  - **Precision**
+  - **Recall**
+  - **F1-score**
+  - **NDCG**
 
-Computes reliability scores (fz, fv)
+---
 
-Adjusts predicted scores accordingly
+## 📈 Output Metrics
 
-Ranks top-N items
+After execution, RDERL reports:
 
-Evaluates Precision, Recall, F1, NDCG
+- Precision@N
+- Recall@N
+- F1-score
+- NDCG
 
-📈 Results & Metrics
-After execution, the system outputs:
+These reflect the ranking performance and recommendation quality.
 
-Precision@N
+---
 
-Recall@N
+## 📖 Citation
 
-F1 Score
+If you use this code, please cite:
 
-NDCG
-
-These metrics reflect ranking accuracy and recommendation quality across users.
-
-📖 Citation
-If you use this code in your research, please cite:
-
-perl
-Copy
-Edit
+```bibtex
 @article{ahmadian2023reliable,
   title={A reliable deep ensemble reinforcement learning-based recommender system},
   author={Ahmadian, Milad and Ahmadi, Mehdi},
@@ -119,8 +109,11 @@ Edit
   publisher={Elsevier},
   doi={10.1016/j.knosys.2023.111123}
 }
-📬 Contact
-For questions or collaborations:
+```
 
-Milad Ahmadian
-Email: miladahmadian@outlook.com
+---
+
+## 📬 Contact
+
+**Milad Ahmadian**  
+Email: [miladahmadian@outlook.com](mailto:miladahmadian@outlook.com)
