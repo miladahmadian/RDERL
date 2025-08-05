@@ -17,7 +17,7 @@ RDERL is a hybrid recommender system that:
   - User–Tag associations
   - User–Trust relationships
 - Computes **neighborhood-based collaborative filtering** using latent similarities
-- Uses **Q-learning** to optimize the weights (`w1`, `w2`, `w3`) for combining similarity sources
+- Uses **Reinforcement Learning (Q-learning)** to optimize the weights (`w1`, `w2`, `w3`) for combining similarity sources
 - Applies a **reliability-aware ranking** to generate robust top-N recommendations
 
 ---
@@ -46,14 +46,14 @@ This will generate:
 ```bash
 python src/Stacked_Denoising_Autoencoder.py
 ```
-This script learns 30-dimensional user embeddings based on:
-- Artist preferences → `models/deep_user_artist.txt`
+This script learns n-latent representations based on:
+- User Artist → `models/deep_user_artist.txt`
 - Tag behavior → `models/deep_user_tag.txt`
 - Trust network → `models/deep_user_trust.txt`
 
 ---
 
-### 3. Optimize Fusion Weights via Reinforcement Learning
+### 3. Optimize Weights via Reinforcement Learning
 
 ```bash
 python src/Reinforcement_Learning.py
@@ -103,11 +103,11 @@ If you use this code, please cite:
 ```bibtex
 @article{ahmadian2023reliable,
   title={A reliable deep ensemble reinforcement learning-based recommender system},
-  author={Ahmadian, Milad and Ahmadi, Mehdi},
+  author={Milad Ahmadian, Sajad Ahmadian, and Mahmood Ahmadi},
   journal={Knowledge-Based Systems},
   year={2023},
   publisher={Elsevier},
-  doi={10.1016/j.knosys.2023.111123}
+  doi={10.1016/j.knosys.2023.110289}
 }
 ```
 
@@ -116,4 +116,4 @@ If you use this code, please cite:
 ## 📬 Contact
 
 **Milad Ahmadian**  
-Email: [miladahmadian@outlook.com](mailto:miladahmadian@outlook.com)
+Email: [m.ahmadian@nki.nl](mailto:m.ahmadian@nki.nl)
