@@ -2,10 +2,7 @@ import csv
 import random
 import pandas as pd
 
-
-
 num_users = 2101
-#num_users = 1892
 
 #creat lists of artists and number of artists
 arti = []
@@ -48,11 +45,12 @@ for i in range (len(cont_tag)):
     if cont_tag[i] >= 5:
         tg = tag[i]
         main_tag.append(tg)
-
+        
 
 class User:
     tag = list()
     artist = list()
+
 
 #creat lists for each user
 Users_list = []
@@ -61,7 +59,6 @@ for u in range (num_users):
     a.tag = list()
     a.artist = list()
     Users_list.append(a)
-
 
 
 #creat artist list and tag list using main artist and main tag
@@ -77,7 +74,8 @@ with open('user_taggedartists.csv') as csvfile:
         if t in main_tag:
             if t not in Users_list[u].tag:
                 Users_list[u].tag.append(t)
-                
+
+
 #recognition userID that not exist artist
 empty = []           
 for u in range (num_users):
@@ -147,6 +145,7 @@ for u in range (num_users):
             value = 1
             f.write("%d\n" %((value)))
 f.close()
+
 
 
 
