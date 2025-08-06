@@ -14,7 +14,7 @@ number_latent_feature = 20
 
 #extracting artist_based latent features using stacked denoising autoencoder
 
-artist = pd.read_csv('C:/Users/m.ahmadian/Desktop/RDERL/Prepared_Data/train_user_artist.csv',encoding='ansi')
+artist = pd.read_csv('train_user_artist.csv',encoding='ansi')
 d = artist.pivot_table(index='userID',columns='artistID',values='value').fillna(0)
 data = np.array(d, dtype = 'int')
 
@@ -70,7 +70,7 @@ f.close()
 
 #extracting trust_based  latent features using stacked denoising autoencoder
 
-trust=pd.read_csv('C:/Users/m.ahmadian/Desktop/RDERL/Prepared_Data/user_friends.csv',encoding='ansi')
+trust=pd.read_csv('user_friends.csv',encoding='ansi')
 d = trust.pivot_table(index='userID',columns='friendID',values='value').fillna(0)
 data = np.array(d, dtype = 'int')
 
@@ -126,7 +126,7 @@ f.close()
 
 #extracting tag_based latent features using stacked denoising autoencoder
 
-tag=pd.read_csv('C:/Users/m.ahmadian/Desktop/RDERL/Prepared_Data/user_tag.csv',encoding='ansi')
+tag=pd.read_csv('user_tag.csv',encoding='ansi')
 d = tag.pivot_table(index='userID',columns='tagID',values='value').fillna(0)
 data = np.array(d, dtype = 'int')
 
@@ -184,3 +184,4 @@ f.close()
 
 
 print (datetime.now() - start)
+
