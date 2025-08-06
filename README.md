@@ -47,7 +47,7 @@ This will generate:
 python src/Stacked_Denoising_Autoencoder.py
 ```
 This script learns n-latent representations based on:
-- User Artist → `models/deep_user_artist.txt`
+- User artist → `models/deep_user_artist.txt`
 - Tag behavior → `models/deep_user_tag.txt`
 - Trust network → `models/deep_user_trust.txt`
 
@@ -102,7 +102,7 @@ If you use this code, please cite:
 
 ```bibtex
 @article{ahmadian2023reliable,
-  title={A reliable deep ensemble reinforcement learning-based recommender system},
+  title={RDERL: Reliable Deep Ensemble Reinforcement Learning-based Recommender System},
   author={Milad Ahmadian, Sajad Ahmadian, and Mahmood Ahmadi},
   journal={Knowledge-Based Systems},
   year={2023},
