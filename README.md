@@ -101,7 +101,7 @@ These reflect the ranking performance and recommendation quality.
 If you use this code, please cite:
 
 ```bibtex
-@article{ahmadian2023reliable,
+@article{
   title={RDERL: Reliable Deep Ensemble Reinforcement Learning-based Recommender System},
   author={Milad Ahmadian, Sajad Ahmadian, and Mahmood Ahmadi},
   journal={Knowledge-Based Systems},
